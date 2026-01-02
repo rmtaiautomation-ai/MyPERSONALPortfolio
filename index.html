@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Your Name</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cosmic-dark: #0D0D1A;
+            --cosmic-darker: #1A1A2E;
+            --neon-cyan: #00FFE0;
+            --neon-orange: #FF4C29;
+            --neon-purple: #8C52FF;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--cosmic-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        .font-futuristic {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Space Background Animation */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, #0D0D1A 0%, #1A1A2E 50%, #0D0D1A 100%);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 40%, white, transparent),
+                radial-gradient(1px 1px at 33% 60%, white, transparent),
+                radial-gradient(2px 2px at 55% 80%, white, transparent);
+            background-repeat: repeat;
+            background-size: 200% 200%;
+            animation: starMove 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        .stars::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 25% 25%, white, transparent),
+                radial-gradient(1px 1px at 75% 75%, white, transparent),
+                radial-gradient(2px 2px at 40% 10%, white, transparent),
+                radial-gradient(1px 1px at 15% 80%, white, transparent),
+                radial-gradient(2px 2px at 85% 60%, white, transparent);
+            background-repeat: repeat;
+            background-size: 300% 300%;
+            animation: starMove 25s linear infinite reverse;
+            opacity: 0.6;
+        }
+
+        @keyframes starMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
+        }
+
+        /* Enhanced Floating Planets */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.4;
+            animation: floatPlanet 25s ease-in-out infinite;
+        }
+
+        .planet-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, var(--neon-purple), transparent);
+            top: 10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .planet-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 30% 30%, var(--neon-cyan), transparent);
+            bottom: 20%;
+            right: -5%;
+            animation-delay: -10s;
+        }
+
+        .planet-3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, var(--neon-orange), transparent);
+            top: 50%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatPlanet {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(40px, -20px) scale(1.05) rotate(90deg); }
+            50% { transform: translate(20px, -40px) scale(1.1) rotate(180deg); }
+            75% { transform: translate(-20px, -30px) scale(1.05) rotate(270deg); }
+        }
+
+        /* Asteroids */
+        .asteroid {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+            border-radius: 20% 30% 25% 35%;
+            opacity: 0.6;
+            animation: floatAsteroid 15s linear infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .asteroid-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            width: 35px;
+            height: 35px;
+        }
+
+        .asteroid-2 {
+            top: 60%;
+            left: 30%;
+            animation-delay: -5s;
+            width: 50px;
+            height: 50px;
+        }
+
+        .asteroid-3 {
+            top: 40%;
+            right: 15%;
+            animation-delay: -10s;
+            width: 30px;
+            height: 30px;
+        }
+
+        .asteroid-4 {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -7s;
+            width: 45px;
+            height: 45px;
+        }
+
+        @keyframes floatAsteroid {
+            0% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% { 
+                transform: translate(30px, -50px) rotate(90deg);
+            }
+            50% { 
+                transform: translate(60px, -30px) rotate(180deg);
+            }
+            75% { 
+                transform: translate(30px, 20px) rotate(270deg);
+            }
+            100% { 
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Spaceships */
+        .spaceship {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            opacity: 0.7;
+            animation: flySpaceship 20s linear infinite;
+        }
+
+        .spaceship-1 {
+            top: 15%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .spaceship-2 {
+            top: 70%;
+            right: -100px;
+            animation-delay: -10s;
+            animation-direction: reverse;
+        }
+
+        .spaceship-3 {
+            top: 45%;
+            left: -100px;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+
+        .spaceship::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            clip-path: polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%);
+            filter: drop-shadow(0 0 8px var(--neon-cyan));
+        }
+
+        .spaceship::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--neon-orange);
+            border-radius: 50%;
+            top: 50%;
+            right: -5px;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px var(--neon-orange);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes flySpaceship {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(calc(25vw + 100px)) translateY(-20px) rotate(5deg); }
+            50% { transform: translateX(calc(50vw + 200px)) translateY(0) rotate(0deg); }
+            75% { transform: translateX(calc(75vw + 100px)) translateY(20px) rotate(-5deg); }
+            100% { transform: translateX(calc(100vw + 200px)) translateY(0) rotate(0deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+            50% { opacity: 0.5; transform: translateY(-50%) scale(1.2); }
+        }
+
+        /* Nebula Effect */
+        .nebula {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            animation: nebulaMove 30s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            background: var(--neon-purple);
+            top: -200px;
+            left: -200px;
+        }
+
+        .nebula-2 {
+            background: var(--neon-cyan);
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -15s;
+        }
+
+        @keyframes nebulaMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.2); }
+        }
+
+        /* Glowing Text Effects */
+        .glow-text-cyan {
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+        }
+
+        .glow-text-purple {
+            text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple), 0 0 30px var(--neon-purple);
+        }
+
+        .glow-text-orange {
+            text-shadow: 0 0 10px var(--neon-orange), 0 0 20px var(--neon-orange), 0 0 30px var(--neon-orange);
+        }
+
+        /* Neon Button Effects */
+        .neon-button {
+            position: relative;
+            padding: 12px 32px;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-cyan);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .neon-button:hover {
+            color: var(--cosmic-dark);
+            box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), 0 0 60px var(--neon-cyan);
+        }
+
+        .neon-button:hover::before {
+            left: 0;
+        }
+
+        .neon-button-orange {
+            border-color: var(--neon-orange);
+            color: var(--neon-orange);
+        }
+
+        .neon-button-orange::before {
+            background: var(--neon-orange);
+        }
+
+        .neon-button-orange:hover {
+            color: var(--cosmic-dark);
+            box-shadow: 0 0 20px var(--neon-orange), 0 0 40px var(--neon-orange), 0 0 60px var(--neon-orange);
+        }
+
+        /* Card Glow Effects */
+        .space-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 224, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .space-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 224, 0.1) 0%, rgba(140, 82, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .space-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 10px 40px rgba(0, 255, 224, 0.3), 0 0 60px rgba(0, 255, 224, 0.1);
+        }
+
+        .space-card:hover::before {
+            opacity: 1;
+        }
+
+        .space-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gradient Text */
+        .gradient-text-cyan {
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, #00CCB8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-purple {
+            background: linear-gradient(135deg, var(--neon-purple) 0%, #6B3FCC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-orange {
+            background: linear-gradient(135deg, var(--neon-orange) 0%, #CC3D20 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skill Bar Animation */
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
+            border-radius: 4px;
+            transition: width 1.5s ease-out;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        /* Fade In Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Glow */
+        .header-glow {
+            background: rgba(13, 13, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 224, 0.2);
+        }
+
+        /* Loading Screen */
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 255, 224, 0.3);
+            border-top: 3px solid var(--neon-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Particle Effect */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Dots Background */
+        @keyframes floatDots {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+        }
+
+        .floating-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatDots 6s ease-in-out infinite;
+        }
+
+        /* Logo Icon Styles */
+        .tech-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+
+        .tech-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            filter: grayscale(50%);
+        }
+
+        .tech-icon:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            filter: grayscale(0%) drop-shadow(0 0 8px var(--neon-cyan)) drop-shadow(0 0 16px var(--neon-cyan));
+        }
+
+        /* Logo Carousel Animations */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: fit-content;
+            animation: scroll-left 30s linear infinite;
+            will-change: transform;
+        }
+
+        .carousel-container:hover .carousel-track {
+            animation-play-state: paused;
+        }
+
+        /* Typewriter Effect */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--neon-cyan);
+            margin-left: 4px;
+            animation: blink 1s infinite;
+            vertical-align: baseline;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .paragraph-fade {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Ensure hero paragraph stays visible at all times */
+        #hero-paragraph {
+            opacity: 1 !important;
+            transition: none !important;
+        }
+
+        /* Section Spacing */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Space Background -->
+    <div class="space-background">
+        <div class="stars"></div>
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div class="planet planet-3"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <!-- Asteroids -->
+        <div class="asteroid asteroid-1"></div>
+        <div class="asteroid asteroid-2"></div>
+        <div class="asteroid asteroid-3"></div>
+        <div class="asteroid asteroid-4"></div>
+        <!-- Spaceships -->
+        <div class="spaceship spaceship-1"></div>
+        <div class="spaceship spaceship-2"></div>
+        <div class="spaceship spaceship-3"></div>
+        <canvas id="particles"></canvas>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="fixed inset-0 bg-[#0D0D1A] z-50 flex items-center justify-center">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 w-full header-glow z-40 transition-all duration-300" id="header">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-futuristic font-bold gradient-text-cyan">PORTFOLIO</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors duration-300 font-semibold">HOME</a>
+                    <a href="#about" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors duration-300 font-semibold">ABOUT</a>
+                    <a href="#projects" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors duration-300 font-semibold">PROJECTS</a>
+                    <a href="#skills" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors duration-300 font-semibold">SKILLS</a>
+                    <a href="#contact" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors duration-300 font-semibold">CONTACT</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-[#00FFE0] focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-[#B0B0B0] hover:text-[#00FFE0] transition-colors font-semibold">HOME</a>
+                <a href="#about" class="block py-2 text-[#B0B0B0] hover:text-[#00FFE0] transition-colors font-semibold">ABOUT</a>
+                <a href="#projects" class="block py-2 text-[#B0B0B0] hover:text-[#00FFE0] transition-colors font-semibold">PROJECTS</a>
+                <a href="#skills" class="block py-2 text-[#B0B0B0] hover:text-[#00FFE0] transition-colors font-semibold">SKILLS</a>
+                <a href="#contact" class="block py-2 text-[#B0B0B0] hover:text-[#00FFE0] transition-colors font-semibold">CONTACT</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="fade-in-up">
+                <h1 id="typewriter-headline" class="text-5xl md:text-8xl font-futuristic font-black mb-4 glow-text-cyan min-h-[1.2em]">
+                </h1>
+                <h2 class="text-2xl md:text-4xl mb-6 text-[#B0B0B0] font-semibold">
+                    AI & Automation Specialist | Full-Stack Low-Code/No-Code Developer  
+                </h2>
+                <p id="hero-paragraph" class="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-[#B0B0B0] leading-relaxed">
+                    I engineer intelligent Viber automated experiences and AI workflows that prepare businesses for the next era of tech.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#projects" class="neon-button inline-block text-center">
+                        VIEW PROJECTS
+                    </a>
+                    <a href="#contact" class="neon-button neon-button-orange inline-block text-center">
+                        GET IN TOUCH
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 fade-in-up">
+            <a href="#about" class="text-[#00FFE0] animate-bounce">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Tools & Technologies Section -->
+    <section id="logos" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Floating Dots Background -->
+        <div class="floating-dot" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+        <div class="floating-dot" style="top: 30%; left: 15%; animation-delay: 1s;"></div>
+        <div class="floating-dot" style="top: 50%; left: 25%; animation-delay: 2s;"></div>
+        <div class="floating-dot" style="top: 70%; left: 35%; animation-delay: 3s;"></div>
+        <div class="floating-dot" style="top: 20%; right: 10%; animation-delay: 1.5s;"></div>
+        <div class="floating-dot" style="top: 40%; right: 20%; animation-delay: 2.5s;"></div>
+        <div class="floating-dot" style="top: 60%; right: 30%; animation-delay: 3.5s;"></div>
+        <div class="floating-dot" style="top: 80%; right: 15%; animation-delay: 4s;"></div>
+        
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-futuristic font-bold text-center mb-12 md:mb-16 gradient-text-cyan">
+                TOOLS & TECHNOLOGIES
+            </h2>
+            
+            <div class="relative w-full carousel-wrapper">
+                <div class="carousel-container">
+                    <div class="flex items-center gap-8 md:gap-12 lg:gap-16 carousel-track">
+                        <!-- First Set of Icons -->
+                        <!-- HTML5 -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/html5" alt="HTML5" class="tech-icon" />
+                        </div>
+                        <!-- JavaScript -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/javascript" alt="JavaScript" class="tech-icon" />
+                        </div>
+                        <!-- Tailwind CSS -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/tailwindcss" alt="Tailwind CSS" class="tech-icon" />
+                        </div>
+                        <!-- React -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/react" alt="React" class="tech-icon" />
+                        </div>
+                        <!-- Python -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/python" alt="Python" class="tech-icon" />
+                        </div>
+                        <!-- Node.js -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" class="tech-icon" />
+                        </div>
+                        <!-- MongoDB -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/mongodb" alt="MongoDB" class="tech-icon" />
+                        </div>
+                        <!-- Express.js -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/express" alt="Express.js" class="tech-icon" />
+                        </div>
+                        <!-- Git -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/git" alt="Git" class="tech-icon" />
+                        </div>
+                        <!-- GitHub -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/github" alt="GitHub" class="tech-icon" />
+                        </div>
+                        
+                        <!-- Duplicate Set for Seamless Loop -->
+                        <!-- HTML5 -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/html5" alt="HTML5" class="tech-icon" />
+                        </div>
+                        <!-- JavaScript -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/javascript" alt="JavaScript" class="tech-icon" />
+                        </div>
+                        <!-- Tailwind CSS -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/tailwindcss" alt="Tailwind CSS" class="tech-icon" />
+                        </div>
+                        <!-- React -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/react" alt="React" class="tech-icon" />
+                        </div>
+                        <!-- Python -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/python" alt="Python" class="tech-icon" />
+                        </div>
+                        <!-- Node.js -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" class="tech-icon" />
+                        </div>
+                        <!-- MongoDB -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/mongodb" alt="MongoDB" class="tech-icon" />
+                        </div>
+                        <!-- Express.js -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/express" alt="Express.js" class="tech-icon" />
+                        </div>
+                        <!-- Git -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/git" alt="Git" class="tech-icon" />
+                        </div>
+                        <!-- GitHub -->
+                        <div class="tech-icon-wrapper flex-shrink-0">
+                            <img src="https://cdn.simpleicons.org/github" alt="GitHub" class="tech-icon" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-futuristic font-bold text-center mb-16 gradient-text-cyan">
+                ABOUT ME
+            </h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="fade-in-up w-full md:w-1/3">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#00FFE0] to-[#8C52FF] rounded-full blur-xl opacity-50"></div>
+                            <img src="./assets/images/mell.jpg" 
+                                 alt="Rommel Tima - Profile Photo" 
+                                 class="relative rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-[#00FFE0] shadow-[0_0_30px_rgba(0,255,224,0.5)]">
+                        </div>
+                    </div>
+                    <div class="fade-in-up w-full md:w-2/3">
+                        <p class="text-lg text-[#B0B0B0] mb-6 leading-relaxed">
+                            Hello! I'm a passionate developer navigating the vast universe of web technologies. 
+                            With expertise in modern frameworks and a love for clean code, I transform ideas 
+                            into digital realities that shine in the cosmos of the internet.
+                        </p>
+                        <p class="text-lg text-[#B0B0B0] mb-6 leading-relaxed">
+                            I specialize in creating immersive web experiences that push the boundaries of what's 
+                            possible. When I'm not coding, you'll find me exploring new technologies, contributing 
+                            to open-source projects, or sharing knowledge with the developer community.
+                        </p>
+                        <div class="mt-8">
+                            <a href="#contact" class="neon-button inline-block">
+                                LET'S CONNECT
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-futuristic font-bold text-center mb-16 gradient-text-purple">
+                MY PROJECTS
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Project Card 1 -->
+                <div class="fade-in-up space-card p-6">
+                    <div class="h-48 bg-gradient-to-br from-[#00FFE0] to-[#8C52FF] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                        <i class="fas fa-project-diagram text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-futuristic font-bold mb-2 text-[#00FFE0]">Project Title 1</h3>
+                    <p class="text-[#B0B0B0] mb-4">A brief description of your project, technologies used, and key features that make it stand out.</p>
+                    <a href="#" class="text-[#00FFE0] hover:text-[#8C52FF] font-semibold inline-flex items-center transition-colors">
+                        VIEW PROJECT <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="fade-in-up space-card p-6">
+                    <div class="h-48 bg-gradient-to-br from-[#8C52FF] to-[#FF4C29] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                        <i class="fas fa-code text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-futuristic font-bold mb-2 text-[#8C52FF]">Project Title 2</h3>
+                    <p class="text-[#B0B0B0] mb-4">A brief description of your project, technologies used, and key features that make it stand out.</p>
+                    <a href="#" class="text-[#8C52FF] hover:text-[#00FFE0] font-semibold inline-flex items-center transition-colors">
+                        VIEW PROJECT <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="fade-in-up space-card p-6">
+                    <div class="h-48 bg-gradient-to-br from-[#FF4C29] to-[#00FFE0] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                        <i class="fas fa-mobile-alt text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-futuristic font-bold mb-2 text-[#FF4C29]">Project Title 3</h3>
+                    <p class="text-[#B0B0B0] mb-4">A brief description of your project, technologies used, and key features that make it stand out.</p>
+                    <a href="#" class="text-[#FF4C29] hover:text-[#00FFE0] font-semibold inline-flex items-center transition-colors">
+                        VIEW PROJECT <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="fade-in-up space-card p-6">
+                    <div class="h-48 bg-gradient-to-br from-[#00FFE0] to-[#FF4C29] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                        <i class="fas fa-laptop-code text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-futuristic font-bold mb-2 text-[#00FFE0]">Project Title 4</h3>
+                    <p class="text-[#B0B0B0] mb-4">A brief description of your project, technologies used, and key features that make it stand out.</p>
+                    <a href="#" class="text-[#00FFE0] hover:text-[#8C52FF] font-semibold inline-flex items-center transition-colors">
+                        VIEW PROJECT <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 5 -->
+                <div class="fade-in-up space-card p-6">
+                    <div class="h-48 bg-gradient-to-br from-[#8C52FF] to-[#00FFE0] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                        <i class="fas fa-database text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-futuristic font-bold mb-2 text-[#8C52FF]">Project Title 5</h3>
+                    <p class="text-[#B0B0B0] mb-4">A brief description of your project, technologies used, and key features that make it stand out.</p>
+                    <a href="#" class="text-[#8C52FF] hover:text-[#00FFE0] font-semibold inline-flex items-center transition-colors">
+                        VIEW PROJECT <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Project Card 6 -->
+                <div class="fade-in-up space-card p-6">
+                    <div class="h-48 bg-gradient-to-br from-[#FF4C29] to-[#8C52FF] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                        <i class="fas fa-rocket text-6xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-futuristic font-bold mb-2 text-[#FF4C29]">Project Title 6</h3>
+                    <p class="text-[#B0B0B0] mb-4">A brief description of your project, technologies used, and key features that make it stand out.</p>
+                    <a href="#" class="text-[#FF4C29] hover:text-[#00FFE0] font-semibold inline-flex items-center transition-colors">
+                        VIEW PROJECT <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-futuristic font-bold text-center mb-16 gradient-text-orange">
+                SKILLS
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Skill Item 1 -->
+                    <div class="fade-in-up space-card p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-futuristic font-semibold text-white">
+                                <i class="fab fa-html5 text-[#FF4C29] mr-2"></i>HTML/CSS
+                            </span>
+                            <span class="text-[#B0B0B0]">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 0%" data-width="95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 2 -->
+                    <div class="fade-in-up space-card p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-futuristic font-semibold text-white">
+                                <i class="fab fa-js-square text-[#FF4C29] mr-2"></i>JavaScript
+                            </span>
+                            <span class="text-[#B0B0B0]">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 0%" data-width="90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 3 -->
+                    <div class="fade-in-up space-card p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-futuristic font-semibold text-white">
+                                <i class="fab fa-react text-[#00FFE0] mr-2"></i>React
+                            </span>
+                            <span class="text-[#B0B0B0]">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 0%" data-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 4 -->
+                    <div class="fade-in-up space-card p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-futuristic font-semibold text-white">
+                                <i class="fab fa-node-js text-[#8C52FF] mr-2"></i>Node.js
+                            </span>
+                            <span class="text-[#B0B0B0]">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 0%" data-width="80%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 5 -->
+                    <div class="fade-in-up space-card p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-futuristic font-semibold text-white">
+                                <i class="fab fa-python text-[#00FFE0] mr-2"></i>Python
+                            </span>
+                            <span class="text-[#B0B0B0]">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 0%" data-width="75%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Item 6 -->
+                    <div class="fade-in-up space-card p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-lg font-futuristic font-semibold text-white">
+                                <i class="fab fa-git-alt text-[#FF4C29] mr-2"></i>Git
+                            </span>
+                            <span class="text-[#B0B0B0]">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 0%" data-width="88%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Icons -->
+                <div class="mt-16 text-center fade-in-up">
+                    <h3 class="text-2xl font-futuristic font-semibold mb-8 text-white">TECHNOLOGIES I WORK WITH</h3>
+                    <div class="flex flex-wrap justify-center gap-8">
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors cursor-pointer transform hover:scale-110" title="HTML5">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors cursor-pointer transform hover:scale-110" title="CSS3">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#FF4C29] transition-colors cursor-pointer transform hover:scale-110" title="JavaScript">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors cursor-pointer transform hover:scale-110" title="React">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#8C52FF] transition-colors cursor-pointer transform hover:scale-110" title="Node.js">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors cursor-pointer transform hover:scale-110" title="Python">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#FF4C29] transition-colors cursor-pointer transform hover:scale-110" title="Git">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <div class="text-5xl text-[#B0B0B0] hover:text-[#8C52FF] transition-colors cursor-pointer transform hover:scale-110" title="NPM">
+                            <i class="fab fa-npm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-6xl font-futuristic font-bold text-center mb-16 gradient-text-cyan">
+                GET IN TOUCH
+            </h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="fade-in-up space-card p-8">
+                        <h3 class="text-2xl font-futuristic font-semibold mb-6 text-[#00FFE0]">LET'S CONNECT</h3>
+                        <p class="text-[#B0B0B0] mb-8 leading-relaxed">
+                            I'm always open to discussing new projects, creative ideas, or opportunities 
+                            to be part of your visions. Feel free to reach out!
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-2xl mr-4 text-[#00FFE0]"></i>
+                                <a href="mailto:your.email@example.com" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors">
+                                    your.email@example.com
+                                </a>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-2xl mr-4 text-[#00FFE0]"></i>
+                                <a href="tel:+1234567890" class="text-[#B0B0B0] hover:text-[#00FFE0] transition-colors">
+                                    +1 (234) 567-890
+                                </a>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-2xl mr-4 text-[#00FFE0]"></i>
+                                <span class="text-[#B0B0B0]">Your City, Country</span>
+                            </div>
+                        </div>
+                        <!-- Social Media Links -->
+                        <div class="mt-10">
+                            <h4 class="text-xl font-futuristic font-semibold mb-6 text-white">FOLLOW ME</h4>
+                            <div class="flex space-x-6">
+                                <a href="#" class="text-4xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors transform hover:scale-110 duration-300" title="LinkedIn">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-4xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors transform hover:scale-110 duration-300" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-4xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors transform hover:scale-110 duration-300" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-4xl text-[#B0B0B0] hover:text-[#00FFE0] transition-colors transform hover:scale-110 duration-300" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="fade-in-up space-card p-8">
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <input type="text" 
+                                       id="name" 
+                                       name="name" 
+                                       placeholder="Your Name" 
+                                       required
+                                       class="w-full px-4 py-3 rounded-lg bg-[#1A1A2E] border border-[#00FFE0]/30 text-white placeholder-[#B0B0B0] focus:outline-none focus:border-[#00FFE0] focus:bg-[#1A1A2E]/80 transition-all">
+                            </div>
+                            <div>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       placeholder="Your Email" 
+                                       required
+                                       class="w-full px-4 py-3 rounded-lg bg-[#1A1A2E] border border-[#00FFE0]/30 text-white placeholder-[#B0B0B0] focus:outline-none focus:border-[#00FFE0] focus:bg-[#1A1A2E]/80 transition-all">
+                            </div>
+                            <div>
+                                <input type="text" 
+                                       id="subject" 
+                                       name="subject" 
+                                       placeholder="Subject" 
+                                       required
+                                       class="w-full px-4 py-3 rounded-lg bg-[#1A1A2E] border border-[#00FFE0]/30 text-white placeholder-[#B0B0B0] focus:outline-none focus:border-[#00FFE0] focus:bg-[#1A1A2E]/80 transition-all">
+                            </div>
+                            <div>
+                                <textarea id="message" 
+                                          name="message" 
+                                          rows="5" 
+                                          placeholder="Your Message" 
+                                          required
+                                          class="w-full px-4 py-3 rounded-lg bg-[#1A1A2E] border border-[#00FFE0]/30 text-white placeholder-[#B0B0B0] focus:outline-none focus:border-[#00FFE0] focus:bg-[#1A1A2E]/80 transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full neon-button">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0D0D1A] border-t border-[#00FFE0]/20 py-8 relative">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-[#B0B0B0]">&copy; 2024 Your Name. All rights reserved.</p>
+            <p class="mt-2 text-sm text-[#B0B0B0]">Built with <span class="text-[#00FFE0]">❤️</span> using HTML, Tailwind CSS, and JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    initAnimations();
+                    initParticles();
+                    initTypewriter();
+                }, 300);
+            }, 800);
+        });
+
+        // Typewriter Effect for Hero Section
+        function initTypewriter() {
+            const headline = document.getElementById('typewriter-headline');
+            const paragraph = document.getElementById('hero-paragraph');
+            
+            if (!headline || !paragraph) return;
+            
+            const phrases = [
+                "Hi, I'm Rommel Tima",
+                "I am an AI Specialist"
+            ];
+            
+            let currentPhraseIndex = 0;
+            let currentCharIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+            let deletingSpeed = 50;
+            let pauseBeforeDelete = 2000;
+            let pauseBeforeType = 500;
+            let timeoutId;
+            
+            function typeWriter() {
+                const currentPhrase = phrases[currentPhraseIndex];
+                
+                if (isDeleting) {
+                    // Erase backwards (right to left)
+                    headline.textContent = currentPhrase.substring(0, currentCharIndex - 1);
+                    currentCharIndex--;
+                    
+                    if (currentCharIndex === 0) {
+                        isDeleting = false;
+                        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                        timeoutId = setTimeout(typeWriter, pauseBeforeType);
+                        return;
+                    }
+                    
+                    timeoutId = setTimeout(typeWriter, deletingSpeed);
+                } else {
+                    // Type forward
+                    headline.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+                    currentCharIndex++;
+                    
+                    if (currentCharIndex === currentPhrase.length) {
+                        // Finished typing, pause then start deleting
+                        headline.innerHTML = currentPhrase + '<span class="typewriter-cursor"></span>';
+                        timeoutId = setTimeout(() => {
+                            isDeleting = true;
+                            typeWriter();
+                        }, pauseBeforeDelete);
+                        return;
+                    }
+                    
+                    headline.innerHTML = currentPhrase.substring(0, currentCharIndex) + '<span class="typewriter-cursor"></span>';
+                    timeoutId = setTimeout(typeWriter, typingSpeed);
+                }
+            }
+            
+            // Start the typewriter effect
+            typeWriter();
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 255, 224, 0.2)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate skill bars
+                        if (entry.target.classList.contains('skill-bar-fill')) {
+                            const width = entry.target.getAttribute('data-width');
+                            setTimeout(() => {
+                                entry.target.style.width = width;
+                            }, 200);
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with 'fade-in-up' class
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Observe skill bars
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                observer.observe(bar);
+            });
+        }
+
+        // Particle Animation
+        function initParticles() {
+            const canvas = document.getElementById('particles');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const asteroids = [];
+            const stars = [];
+            const particleCount = 80;
+            const asteroidCount = 5;
+            const starCount = 100;
+
+            // Enhanced Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.8;
+                    this.speedY = Math.random() * 0.8 + 0.3;
+                    this.opacity = Math.random() * 0.5 + 0.3;
+                    this.twinkle = Math.random() * Math.PI * 2;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.twinkle += 0.05;
+
+                    if (this.y > canvas.height) {
+                        this.y = 0;
+                        this.x = Math.random() * canvas.width;
+                    }
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                }
+
+                draw() {
+                    const twinkleOpacity = this.opacity + Math.sin(this.twinkle) * 0.2;
+                    ctx.fillStyle = `rgba(0, 255, 224, ${Math.max(0.1, Math.min(1, twinkleOpacity))})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Canvas Asteroid class
+            class CanvasAsteroid {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 15 + 10;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.vertices = this.generateVertices();
+                }
+
+                generateVertices() {
+                    const vertices = [];
+                    const numVertices = 6 + Math.floor(Math.random() * 4);
+                    for (let i = 0; i < numVertices; i++) {
+                        const angle = (Math.PI * 2 / numVertices) * i;
+                        const radius = this.size * (0.7 + Math.random() * 0.3);
+                        vertices.push({
+                            x: Math.cos(angle) * radius,
+                            y: Math.sin(angle) * radius
+                        });
+                    }
+                    return vertices;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.rotation += this.rotationSpeed;
+
+                    if (this.x > canvas.width + this.size) this.x = -this.size;
+                    if (this.x < -this.size) this.x = canvas.width + this.size;
+                    if (this.y > canvas.height + this.size) this.y = -this.size;
+                    if (this.y < -this.size) this.y = canvas.height + this.size;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
+                    ctx.fillStyle = `rgba(150, 150, 150, 0.4)`;
+                    ctx.strokeStyle = `rgba(200, 200, 200, 0.6)`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(this.vertices[0].x, this.vertices[0].y);
+                    for (let i = 1; i < this.vertices.length; i++) {
+                        ctx.lineTo(this.vertices[i].x, this.vertices[i].y);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+
+            // Twinkling Star class
+            class Star {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.opacity = Math.random();
+                    this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+                }
+
+                update() {
+                    this.opacity += this.twinkleSpeed;
+                    if (this.opacity > 1) {
+                        this.opacity = 0;
+                    }
+                }
+
+                draw() {
+                    const alpha = Math.abs(Math.sin(this.opacity * Math.PI));
+                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Initialize particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            // Initialize canvas asteroids
+            for (let i = 0; i < asteroidCount; i++) {
+                asteroids.push(new CanvasAsteroid());
+            }
+
+            // Initialize twinkling stars
+            for (let i = 0; i < starCount; i++) {
+                stars.push(new Star());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw stars
+                stars.forEach(star => {
+                    star.update();
+                    star.draw();
+                });
+
+                // Draw particles
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                // Draw asteroids
+                asteroids.forEach(asteroid => {
+                    asteroid.update();
+                    asteroid.draw();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would typically send the form data to a server
+                alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon at ${email}.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
