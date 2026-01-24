@@ -1,15 +1,17 @@
 // Loading Screen
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
-    setTimeout(() => {
-        loader.style.opacity = '0';
+    if (loader) {
         setTimeout(() => {
-            loader.style.display = 'none';
-            initAnimations();
-            initParticles();
-            initTypewriter();
-        }, 300);
-    }, 800);
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                initAnimations();
+                initParticles();
+                initTypewriter();
+            }, 300);
+        }, 800);
+    }
 });
 
 // Typewriter Effect for Hero Section
@@ -375,3 +377,37 @@ if (contactForm) {
         contactForm.reset();
     });
 }
+
+// Function to open documentation modal
+function openDocsModal(title, url) {
+    const modal = document.getElementById('docsModal');
+    const frame = document.getElementById('notionFrame');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    if (modal && frame && modalTitle) {
+        modalTitle.textContent = title + ' Documentation';
+        frame.src = url;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Close modal functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const closeModal = document.getElementById('closeModal');
+    const modal = document.getElementById('docsModal');
+    const frame = document.getElementById('notionFrame');
+
+    if (closeModal && modal && frame) {
+        const closeAction = () => {
+            modal.classList.add('hidden');
+            frame.src = '';
+            document.body.style.overflow = 'auto';
+        };
+
+        closeModal.addEventListener('click', closeAction);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeAction();
+        });
+    }
+});
