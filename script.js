@@ -392,6 +392,48 @@ function openDocsModal(title, url) {
     }
 }
 
+// Function to open Loom video modal
+function openLoomModal(title, loomUrl) {
+    const modal = document.getElementById('loomModal');
+    const frame = document.getElementById('loomFrame');
+    const modalTitle = document.getElementById('loomVideoTitle');
+    const loadingSpinner = document.getElementById('loomLoading');
+    
+    if (modal && frame && modalTitle) {
+        // Convert Loom share URL to embed URL if necessary
+        let embedUrl = loomUrl;
+        if (loomUrl.includes('loom.com/share/')) {
+            embedUrl = loomUrl.replace('loom.com/share/', 'loom.com/embed/');
+        } else if (!loomUrl.includes('loom.com/embed/') && loomUrl !== '#' && loomUrl !== 'YOUR_LOOM_URL_HERE') {
+            // Basic fallback for other loom formats
+            const videoId = loomUrl.split('/').pop().split('?')[0];
+            embedUrl = `https://www.loom.com/embed/${videoId}?hide_owner=true&hide_share=true&hide_title=true&hide_embed_speech_bubbles=true`;
+        }
+
+        // Set modal content
+        modalTitle.textContent = title;
+        frame.src = embedUrl;
+        
+        // Show loading spinner
+        if (loadingSpinner) {
+            loadingSpinner.classList.remove('hidden');
+        }
+        
+        // Show modal
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        
+        // Hide loading spinner when video loads
+        frame.onload = function() {
+            if (loadingSpinner) {
+                setTimeout(() => {
+                    loadingSpinner.classList.add('hidden');
+                }, 500);
+            }
+        };
+    }
+}
+
 // Close modal functionality
 document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('closeModal');
@@ -409,5 +451,37 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeAction();
         });
+    }
+
+    const closeLoomModal = document.getElementById('closeLoomModal');
+    const loomModal = document.getElementById('loomModal');
+    const loomFrame = document.getElementById('loomFrame');
+    const fullscreenLoom = document.getElementById('fullscreenLoom');
+    
+    if (closeLoomModal && loomModal && loomFrame) {
+        const closeLoomAction = () => {
+            loomModal.classList.add('hidden');
+            loomFrame.src = '';
+            document.body.style.overflow = 'auto';
+        };
+        
+        closeLoomModal.addEventListener('click', closeLoomAction);
+        loomModal.addEventListener('click', (e) => {
+            if (e.target === loomModal) closeLoomAction();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !loomModal.classList.contains('hidden')) {
+                closeLoomAction();
+            }
+        });
+
+        if (fullscreenLoom) {
+            fullscreenLoom.addEventListener('click', () => {
+                if (loomFrame.requestFullscreen) loomFrame.requestFullscreen();
+                else if (loomFrame.webkitRequestFullscreen) loomFrame.webkitRequestFullscreen();
+                else if (loomFrame.msRequestFullscreen) loomFrame.msRequestFullscreen();
+            });
+        }
     }
 });
