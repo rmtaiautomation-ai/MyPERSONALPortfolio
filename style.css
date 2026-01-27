@@ -11,7 +11,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #0f0f0f;
+    background: #020617;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,8 +22,8 @@
 .loader {
     width: 50px;
     height: 50px;
-    border: 4px solid #333;
-    border-top: 4px solid #ffaa33;
+    border: 4px solid #1E293B;
+    border-top: 4px solid #3B82F6;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -38,26 +38,31 @@
   #CLAUDE CODE COLOR VARIABLES
 \*------------------------------------*/
 :root {
-  /* Claude Code Official Colors - Enhanced Vibrant Theme */
-  --claude-bg-primary: #0f0f0f;
-  --claude-bg-secondary: #151515;
-  --claude-bg-tertiary: #1e1e1e;
-  --claude-border: #2a2a2a;
-  --claude-text-primary: #ffffff;
-  --claude-text-secondary: #f0f0f0;
-  --claude-text-tertiary: #cccccc;
-  --claude-accent: #ffaa33;
-  --claude-accent-hover: #ffd58a;
+  /* Developer Dark Tech Theme */
+  --claude-bg-primary: #020617;
+  --claude-bg-secondary: #0B1220;
+  --claude-bg-tertiary: #0B1220;
+  --claude-border: #1E293B;
+  --claude-text-primary: #FFFFFF;
+  --claude-text-secondary: #E5E7EB;
+  --claude-text-tertiary: #94A3B8;
+  --claude-accent: #3B82F6;
+  --claude-accent-hover: #60A5FA;
   
-  /* Enhanced vibrant orange for consistency */
-  --claude-orange: #FF9900;
-  --claude-light-orange: #FFCC66;
-  --claude-cream: #FFF5E6;
-  --claude-muted-tan: #E6D4B3;
-  --claude-soft-blue: #66CCFF;
-  --border-color: #3a3025;
-  --card-bg: #181818;
-  --hover-bg: #222222;
+  /* Button colors */
+  --button-primary: #2563EB;
+  --button-primary-hover: #1D4ED8;
+  --button-text: #FFFFFF;
+  
+  /* Legacy support */
+  --claude-blue: #3B82F6;
+  --claude-light-blue: #60A5FA;
+  --claude-cream: #E5E7EB;
+  --claude-muted-tan: #94A3B8;
+  --claude-soft-blue: #3B82F6;
+  --border-color: #1E293B;
+  --card-bg: #0B1220;
+  --hover-bg: #0F172A;
 }
 
 /*------------------------------------*\
@@ -76,8 +81,8 @@ html {
 body {
   font-family: "Anthropic Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   font-size: 16px;
-  background: var(--claude-bg-primary);
-  color: var(--claude-text-primary);
+  background: #020617;
+  color: #E5E7EB;
   line-height: 1.6;
   overflow-x: hidden;
   font-feature-settings: "cv05", "cv08";
@@ -94,7 +99,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.3;
   margin-bottom: 1rem;
-  color: var(--claude-text-primary);
+  color: #FFFFFF;
 }
 
 h1 { font-size: 3.5rem; }
@@ -104,7 +109,7 @@ h4 { font-size: 1.5rem; }
 
 p {
   margin-bottom: 1.5rem;
-  color: var(--claude-text-secondary);
+  color: #E5E7EB;
 }
 
 /*------------------------------------*\
@@ -125,9 +130,9 @@ p {
   #HEADER ENHANCEMENT
 \*------------------------------------*/
 header {
-  background: rgba(20, 20, 19, 0.95);
+  background: rgba(11, 18, 32, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--claude-border);
+  border-bottom: 1px solid #1E293B;
   padding: 1rem 0;
   position: sticky;
   top: 0;
@@ -140,17 +145,17 @@ header {
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 500;
-  color: var(--claude-text-secondary);
+  color: #94A3B8;
 }
 
 .nav-link:hover {
-  color: var(--claude-accent) !important;
+  color: #3B82F6 !important;
 }
 
 .nav-logo {
   font-size: 1.75rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--claude-accent), var(--claude-orange));
+  background: linear-gradient(135deg, #3B82F6, #60A5FA);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -160,19 +165,19 @@ header {
   #CARD ENHANCEMENTS
 \*------------------------------------*/
 .card {
-  background: var(--claude-bg-secondary);
-  border: 1px solid var(--claude-border);
+  background: #0B1220;
+  border: 1px solid #1E293B;
   border-radius: 24px;
   padding: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .card:hover {
-  background: var(--claude-bg-tertiary);
-  border-color: var(--claude-soft-blue);
-  box-shadow: 0 0 20px rgba(102, 204, 255, 0.2);
+  background: #0F172A;
+  border-color: #3B82F6;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 /*------------------------------------*\
@@ -180,9 +185,9 @@ header {
 \*------------------------------------*/
 .btn {
   padding: 0.75rem 1.5rem;
-  border: 2px solid var(--claude-accent);
-  background: transparent;
-  color: var(--claude-accent);
+  border: 2px solid #1E293B;
+  background: #2563EB;
+  color: #FFFFFF;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -195,63 +200,80 @@ header {
 }
 
 .btn:hover {
-  background: var(--claude-accent);
-  color: var(--claude-bg-primary);
-  box-shadow: 0 0 20px rgba(255, 170, 51, 0.5);
-  transform: translateY(-2px);
+  background: #1D4ED8;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  transform: scale(1.03);
 }
 
 /* White Button Variant for Hero Section */
 .btn-white {
-  border-color: #ffffff !important;
-  color: #ffffff !important;
+  border-color: #1E293B !important;
+  color: #FFFFFF !important;
+  background: #2563EB !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Specific style for view projects button */
 .view-projects-btn {
-  border-color: #ffaa33 !important;
+  border-color: #1E293B !important;
+  background: #2563EB !important;
 }
 
 .btn.view-projects-btn:hover {
-  color: #ffffff !important;
-  background: #ffaa33 !important;
-  border-color: #ffaa33 !important;
-  box-shadow: 0 0 20px rgba(255, 170, 51, 0.5) !important;
+  color: #FFFFFF !important;
+  background: #1D4ED8 !important;
+  border-color: #1E293B !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5) !important;
+  transform: scale(1.04);
 }
 
 .contact-btn {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
+  color: #FFFFFF !important;
+  border-color: #1E293B !important;
+  background: #2563EB !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .btn.contact-btn:hover {
-  color: #ffaa33 !important;
-  background: transparent !important;
-  border-color: #ffffff !important;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+  color: #FFFFFF !important;
+  background: #1D4ED8 !important;
+  border-color: #1E293B !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5) !important;
+  transform: scale(1.04);
 }
 
 .btn-white:hover {
-  background: var(--claude-accent) !important;
-  color: var(--claude-text-primary) !important;
-  border-color: var(--claude-accent) !important;
-  box-shadow: 0 0 15px rgba(255, 170, 51, 0.3) !important;
+  background: #1D4ED8 !important;
+  color: #FFFFFF !important;
+  border-color: #1E293B !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4) !important;
+  transform: scale(1.03);
 }
 
 /*------------------------------------*\
   #TEXT STYLE ENHANCEMENTS
 \*------------------------------------*/
-.text-gradient-orange {
-  background: linear-gradient(135deg, var(--claude-accent) 0%, var(--claude-orange) 100%);
+.text-gradient-blue {
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.text-claude-orange {
-  color: var(--claude-accent);
+.text-gradient-blue {
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.brand-accent {
+  color: #3B82F6 !important;
+}
+
+.text-claude-blue {
+  color: #3B82F6 !important;
 }
 
 .hero-text {
@@ -260,7 +282,7 @@ header {
   line-height: 68.5929px !important;
   height: 68.5938px !important;
   letter-spacing: normal !important;
-  color: var(--claude-text-primary);
+  color: #FFFFFF;
   display: inline-flex !important;
   align-items: center !important;
   vertical-align: middle !important;
@@ -334,8 +356,8 @@ header {
   #FOOTER ENHANCEMENT
 \*------------------------------------*/
 footer {
-  background: var(--claude-bg-secondary);
-  border-top: 1px solid var(--claude-border);
+  background: #0B1220;
+  border-top: 1px solid #1E293B;
   padding: 3rem 0;
   text-align: center;
 }
@@ -362,14 +384,14 @@ a:hover {
   #ADDITIONAL VIBRANT EFFECTS
 \*------------------------------------*/
 /* Subtle glow effects for key elements */
-.text-claude-orange {
-  color: var(--claude-accent);
-  text-shadow: 0 0 5px rgba(255, 170, 51, 0.3);
+.text-claude-blue {
+  color: #3B82F6;
+  text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
 }
 
 .text-claude-soft-blue {
-  color: var(--claude-soft-blue);
-  text-shadow: 0 0 5px rgba(102, 204, 255, 0.3);
+  color: #3B82F6;
+  text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
 }
 
 /* Subtle card border glow */
@@ -394,7 +416,7 @@ a:hover {
 
 /* Subtle header glow */
 header {
-  box-shadow: 0 4px 15px rgba(255, 170, 51, 0.15);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
 }
 
 /*------------------------------------*\
@@ -405,11 +427,11 @@ header {
 }
 
 #loomModal .bg-claude-dark-bg {
-    background: #151515;
+    background: #0B1220;
 }
 
 #loomModal .bg-claude-darker-bg {
-    background: #0f0f0f;
+    background: #020617;
 }
 
 /* Loading spinner for Loom modal */
@@ -514,8 +536,8 @@ header {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 2px solid var(--claude-accent);
-    background: rgba(255, 170, 51, 0.1);
+    border: 2px solid #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -525,9 +547,9 @@ header {
 }
 
 .theme-toggle-btn:hover {
-    background: rgba(255, 170, 51, 0.2);
+    background: rgba(59, 130, 246, 0.2);
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 170, 51, 0.3);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
 }
 
 .theme-icon {
@@ -537,13 +559,13 @@ header {
 }
 
 .sun-icon {
-    color: #FFA500;
+    color: #60A5FA;
     opacity: 0;
     transform: rotate(-90deg) scale(0);
 }
 
 .moon-icon {
-    color: #FFD700;
+    color: #3B82F6;
     opacity: 1;
     transform: rotate(0deg) scale(1);
 }
@@ -626,37 +648,39 @@ body.light-mode .text-white {
 }
 
 body.light-mode .btn {
-    border-color: #FF9900;
-    color: #FF9900;
+    border-color: #3B82F6;
+    color: #3B82F6;
 }
 
 body.light-mode .btn:hover {
-    background: #FF9900;
+    background: #3B82F6;
     color: #fff;
 }
 
 /* Specific override for contact button in light mode */
 body.light-mode .contact-btn {
-    border-color: #000000 !important;
-    color: #000000 !important;
+    border-color: #2563EB !important;
+    color: #FFFFFF !important;
+    background: #2563EB !important;
 }
 
 body.light-mode .contact-btn:hover {
-    background: #000000 !important;
+    background: #1D4ED8 !important;
     color: #ffffff !important;
-    border-color: #000000 !important;
+    border-color: #1D4ED8 !important;
 }
 
 /* Specific override for view projects button in light mode */
 body.light-mode .view-projects-btn {
-    border-color: #000000 !important;
-    color: #000000 !important;
+    border-color: #2563EB !important;
+    color: #FFFFFF !important;
+    background: #2563EB !important;
 }
 
 body.light-mode .view-projects-btn:hover {
-    background: #000000 !important;
+    background: #1D4ED8 !important;
     color: #ffffff !important;
-    border-color: #000000 !important;
+    border-color: #1D4ED8 !important;
 }
 
 body.light-mode footer {
@@ -684,12 +708,12 @@ body.light-mode textarea::placeholder {
     color: #888 !important;
 }
 
-body.light-mode .text-claude-orange {
+body.light-mode .text-claude-blue {
     color: #FF9900 !important;
     text-shadow: none;
 }
 
-body.light-mode .text-gradient-orange {
+body.light-mode .text-gradient-blue {
     background: linear-gradient(135deg, #FF9900 0%, #FF6600 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -714,12 +738,12 @@ body.light-mode .loader {
 }
 
 body.light-mode .theme-toggle-btn {
-    border-color: #FF9900;
-    background: rgba(255, 153, 0, 0.1);
+    border-color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
 }
 
 body.light-mode .theme-toggle-btn:hover {
-    background: rgba(255, 153, 0, 0.2);
+    background: rgba(59, 130, 246, 0.2);
 }
 
 body.light-mode .nav-logo {
@@ -764,9 +788,9 @@ body.light-mode .nav-logo {
 
 /* Active tab button */
 .tab-btn.active {
-    color: #FF9900;
-    background: rgba(255, 153, 0, 0.1);
-    border-bottom-color: #FF9900;
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
+    border-bottom-color: #3B82F6;
 }
 
 /* Tab panels */
@@ -805,15 +829,15 @@ body.light-mode .nav-logo {
 }
 
 #docsModal .bg-gray-900 {
-    background: linear-gradient(145deg, #1a1a1a 0%, #151515 100%);
+    background: linear-gradient(145deg, #0B1220 0%, #020617 100%);
 }
 
 #docsModal .bg-gray-800 {
-    background: #1f1f1f;
+    background: #0B1220;
 }
 
 #docsModal .bg-gray-700:hover {
-    background: #2a2a2a;
+    background: #0F172A;
 }
 
 #docsModal .bg-white {
