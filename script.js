@@ -68,6 +68,46 @@ function initThemeToggle() {
 // Initialize theme toggle
 initThemeToggle();
 
+// Rotating Status Text Functionality
+function initStatusRotator() {
+    const statusWord = document.getElementById('status-word');
+    
+    if (!statusWord) return;
+    
+    const statusWords = [
+        'Innovating…',
+        'Creating…',
+        'Building…',
+        'Scaling…',
+        'Optimizing…'
+    ];
+    
+    let currentIndex = 0;
+    
+    function rotateStatus() {
+        // Add fade-out class
+        statusWord.classList.add('fade-out');
+        statusWord.classList.remove('fade-in');
+        
+        // Wait for fade-out animation
+        setTimeout(() => {
+            // Update word
+            currentIndex = (currentIndex + 1) % statusWords.length;
+            statusWord.textContent = statusWords[currentIndex];
+            
+            // Add fade-in class
+            statusWord.classList.remove('fade-out');
+            statusWord.classList.add('fade-in');
+        }, 500);
+    }
+    
+    // Rotate every 4.5 seconds
+    setInterval(rotateStatus, 4500);
+}
+
+// Initialize status rotator
+initStatusRotator();
+
 // Typewriter Effect for Hero Section
 function initTypewriter() {
     const headline = document.getElementById('typewriter-headline');

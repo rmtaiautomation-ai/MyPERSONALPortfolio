@@ -670,6 +670,13 @@ body.light-mode .contact-btn:hover {
     border-color: #1D4ED8 !important;
 }
 
+/* Specific override for generic buttons in light mode */
+body.light-mode .btn:not(.view-projects-btn):not(.contact-btn) {
+    color: #FFFFFF !important;
+    border-color: #2563EB !important;
+    background: #2563EB;
+}
+
 /* Specific override for view projects button in light mode */
 body.light-mode .view-projects-btn {
     border-color: #2563EB !important;
@@ -714,10 +721,12 @@ body.light-mode .text-claude-blue {
 }
 
 body.light-mode .text-gradient-blue {
-    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: gradient-shift 5s linear infinite;
 }
 
 body.light-mode .mobile-menu-btn {
@@ -886,4 +895,68 @@ body.light-mode .nav-logo {
     #notionFrame {
         height: 400px !important;
     }
+}
+
+/*------------------------------------*\
+  #ANIMATED GRADIENT TEXT
+\*------------------------------------*/
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s linear infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*------------------------------------*\
+  #ROTATING STATUS TEXT
+\*------------------------------------*/
+.status-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 48px;
+}
+
+.status-label {
+    color: #94A3B8;
+    transition: color 0.3s ease;
+}
+
+.status-word {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.status-word.fade-out {
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+.status-word.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Light mode for status text */
+body.light-mode .status-label {
+    color: #64748B;
 }
