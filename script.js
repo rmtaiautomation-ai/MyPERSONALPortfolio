@@ -14,6 +14,60 @@ window.addEventListener('load', () => {
     }
 });
 
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+    
+    // Check for saved theme preference or default to system preference
+    const getPreferredTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            return savedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    };
+    
+    // Apply theme
+    const applyTheme = (theme) => {
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
+        } else {
+            document.body.classList.remove('light-mode');
+        }
+        localStorage.setItem('theme', theme);
+    };
+    
+    // Toggle theme
+    const toggleTheme = () => {
+        const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+    };
+    
+    // Initialize theme on page load
+    applyTheme(getPreferredTheme());
+    
+    // Add event listeners
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+    
+    if (themeToggleMobileBtn) {
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+    }
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'light' : 'dark');
+        }
+    });
+}
+
+// Initialize theme toggle
+initThemeToggle();
+
 // Typewriter Effect for Hero Section
 function initTypewriter() {
     const headline = document.getElementById('typewriter-headline');
@@ -222,7 +276,9 @@ function initParticles() {
 
         draw() {
             const twinkleOpacity = this.opacity + Math.sin(this.twinkle) * 0.2;
-            ctx.fillStyle = `rgba(0, 255, 224, ${Math.max(0.1, Math.min(1, twinkleOpacity))})`;
+            const isLightMode = document.body.classList.contains('light-mode');
+            const color = isLightMode ? 'rgba(255, 153, 0, ' : 'rgba(0, 255, 224, ';
+            ctx.fillStyle = color + Math.max(0.1, Math.min(1, twinkleOpacity)) + ')';
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -271,8 +327,9 @@ function initParticles() {
             ctx.save();
             ctx.translate(this.x, this.y);
             ctx.rotate(this.rotation);
-            ctx.fillStyle = `rgba(150, 150, 150, 0.4)`;
-            ctx.strokeStyle = `rgba(200, 200, 200, 0.6)`;
+            const isLightMode = document.body.classList.contains('light-mode');
+            ctx.fillStyle = isLightMode ? 'rgba(100, 100, 100, 0.3)' : 'rgba(150, 150, 150, 0.4)';
+            ctx.strokeStyle = isLightMode ? 'rgba(120, 120, 120, 0.4)' : 'rgba(200, 200, 200, 0.6)';
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(this.vertices[0].x, this.vertices[0].y);
@@ -305,7 +362,9 @@ function initParticles() {
 
         draw() {
             const alpha = Math.abs(Math.sin(this.opacity * Math.PI));
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            const isLightMode = document.body.classList.contains('light-mode');
+            const color = isLightMode ? 'rgba(255, 153, 0, ' : 'rgba(255, 255, 255, ';
+            ctx.fillStyle = color + alpha + ')';
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -389,8 +448,60 @@ function openDocsModal(title, url) {
         frame.src = url;
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        
+        // Reset to Docs tab when modal opens
+        resetTabs();
+        activateTab('docs');
     }
 }
+
+// Tab switching functionality
+function resetTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    tabPanels.forEach(panel => {
+        panel.classList.add('hidden');
+        panel.classList.remove('active');
+    });
+}
+
+function activateTab(tabId) {
+    const tabButton = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+    const tabPanel = document.getElementById(tabId);
+    
+    if (tabButton && tabPanel) {
+        tabButton.classList.add('active');
+        tabPanel.classList.remove('hidden');
+        tabPanel.classList.add('active');
+    }
+}
+
+// Initialize tab click handlers
+document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            
+            // Don't do anything if already active
+            if (this.classList.contains('active')) {
+                return;
+            }
+            
+            // Reset all tabs
+            resetTabs();
+            
+            // Activate clicked tab
+            activateTab(tabId);
+        });
+    });
+});
 
 // Function to open Loom video modal
 function openLoomModal(title, loomUrl) {

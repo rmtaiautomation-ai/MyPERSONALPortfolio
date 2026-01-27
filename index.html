@@ -32,18 +32,30 @@
                 <div class="text-2xl font-futuristic font-bold text-gradient-orange nav-logo"> RMT <span class="text-claude-orange">&lt;/&gt;</span> </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-claude-muted-tan transition-colors duration-300 font-semibold nav-link">HOME</a>
                     <a href="#about" class="text-claude-muted-tan transition-colors duration-300 font-semibold nav-link">ABOUT</a>
                     <a href="#projects" class="text-claude-muted-tan transition-colors duration-300 font-semibold nav-link">PROJECTS</a>
                     <a href="#skills" class="text-claude-muted-tan transition-colors duration-300 font-semibold nav-link">SKILLS</a>
                     <a href="#contact" class="text-claude-muted-tan transition-colors duration-300 font-semibold nav-link">CONTACT</a>
+                    
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                        <i class="fas fa-sun theme-icon sun-icon"></i>
+                        <i class="fas fa-moon theme-icon moon-icon"></i>
+                    </button>
                 </div>
                 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-claude-orange focus:outline-none focus:ring-2 focus:ring-claude-orange rounded">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+                <!-- Mobile Menu Button and Theme Toggle -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="theme-toggle-mobile" class="theme-toggle-btn" aria-label="Toggle theme">
+                        <i class="fas fa-sun theme-icon sun-icon"></i>
+                        <i class="fas fa-moon theme-icon moon-icon"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-claude-orange focus:outline-none focus:ring-2 focus:ring-claude-orange rounded">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
             
             <!-- Mobile Navigation -->
@@ -78,7 +90,7 @@
                         <a href="#projects" class="btn btn-white inline-block text-center view-projects-btn">
                             VIEW PROJECTS
                         </a>
-                        <a href="#contact" class="btn btn-white inline-block text-center contact-btn">
+                        <a href="#contact" class="btn btn-gray inline-block text-center contact-btn">
                             GET IN TOUCH
                         </a>
                     </div>
@@ -554,8 +566,60 @@ where curiosity resonates, ideas spark energy,<br> and growth begins when you li
                 <h3 id="modalTitle" class="text-xl font-bold text-white">Project Documentation</h3>
                 <button id="closeModal" class="text-white text-2xl hover:text-claude-orange transition-colors">&times;</button>
             </div>
+            
+            <!-- Tab Navigation -->
+            <div class="tabs flex border-b border-gray-700 bg-gray-800">
+                <button class="tab-btn active flex-1 py-3 px-4 text-center font-semibold transition-all duration-300 border-b-2 border-claude-orange text-claude-orange bg-gray-700" data-tab="docs">
+                    <i class="fas fa-file-alt mr-2"></i>Docs
+                </button>
+                <button class="tab-btn flex-1 py-3 px-4 text-center font-semibold transition-all duration-300 border-b-2 border-transparent text-gray-400 hover:text-white hover:bg-gray-700" data-tab="diagram">
+                    <i class="fas fa-sitemap mr-2"></i>Diagram
+                </button>
+                <button class="tab-btn flex-1 py-3 px-4 text-center font-semibold transition-all duration-300 border-b-2 border-transparent text-gray-400 hover:text-white hover:bg-gray-700" data-tab="github">
+                    <i class="fab fa-github mr-2"></i>GitHub
+                </button>
+            </div>
+            
+            <!-- Tab Panels -->
             <div class="p-4 flex-grow overflow-auto bg-white rounded-b-lg">
-                <iframe id="notionFrame" src="" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+                <!-- Docs Panel -->
+                <div id="docs" class="tab-panel active">
+                    <iframe id="notionFrame" src="" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <!-- Diagram Panel -->
+                <div id="diagram" class="tab-panel hidden">
+                    <div class="text-center py-8">
+                        <h4 class="text-2xl font-bold mb-4 text-gray-800">Workflow Diagram</h4>
+                        <div class="bg-gray-100 rounded-lg p-8 mb-4 border-2 border-dashed border-gray-300">
+                            <img src="" alt="Workflow Diagram" class="max-w-full mx-auto" id="diagramImage" style="display: none;">
+                            <div id="diagramPlaceholder" class="text-gray-500">
+                                <i class="fas fa-image text-6xl mb-4 text-gray-300"></i>
+                                <p class="text-lg">Diagram Image Placeholder</p>
+                                <p class="text-sm text-gray-400 mt-2">Add your workflow diagram image here</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mt-4">Workflow visualization showing the lead capture process and CRM integration</p>
+                    </div>
+                </div>
+                
+                <!-- GitHub Panel -->
+                <div id="github" class="tab-panel hidden">
+                    <div class="text-center py-8">
+                        <h4 class="text-2xl font-bold mb-4 text-gray-800">Project Repository</h4>
+                        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                            This project contains the complete source code for the lead capture automation workflow, 
+                            including integrations with Airtable, Google Sheets, Gmail, and Slack.
+                        </p>
+                        <a href="https://github.com/yourname/yourrepo" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-300 shadow-lg">
+                            <i class="fab fa-github mr-2"></i>
+                            Open on GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
