@@ -63,6 +63,43 @@
   --border-color: #1E293B;
   --card-bg: #0B1220;
   --hover-bg: #0F172A;
+  
+  /* Project Badge colors */
+  --badge-bg: rgba(255, 255, 255, 0.06);
+  --badge-border: rgba(255, 255, 255, 0.12);
+  --badge-text: rgba(255, 255, 255, 0.85);
+  --badge-hover-bg: rgba(255, 255, 255, 0.10);
+  --badge-hover-border: rgba(255, 255, 255, 0.20);
+}
+
+/*------------------------------------*\
+  #PROJECT STACK BADGES
+\*------------------------------------*/
+.project__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 12px 0 16px 0;
+  padding: 0;
+}
+
+.stack__item {
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 999px;
+  color: var(--badge-text);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.stack__item:hover {
+  background: var(--badge-hover-bg);
+  border-color: var(--badge-hover-border);
+  color: #FFFFFF;
 }
 
 /*------------------------------------*\
