@@ -362,7 +362,7 @@ header {
 }
 
 .carousel-wrapper {
-  padding: 20px 0;
+  padding: 8px 0;
 }
 
 .carousel-container {
@@ -370,22 +370,38 @@ header {
 }
 
 .carousel-track {
-  animation: scroll 30s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   perspective: 1000px;
+}
+
+.carousel-track-rtl {
+  animation: scroll-rtl 30s linear infinite;
+}
+
+.carousel-track-ltr {
+  animation: scroll-ltr 30s linear infinite;
 }
 
 .carousel-track:hover {
   animation-play-state: paused;
 }
 
-@keyframes scroll {
+@keyframes scroll-rtl {
   0% {
     transform: translate3d(0, 0, 0);
   }
   100% {
     transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes scroll-ltr {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }
 

@@ -116,7 +116,7 @@ function initTypewriter() {
     if (!headline || !paragraph) return;
     
     const phrases = [
-        " Rommel Tima",
+        " Rommel",
         " AI Specialist"
     ];
     
