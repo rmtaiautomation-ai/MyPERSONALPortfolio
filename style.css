@@ -354,6 +354,8 @@ header {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
+  width: 120px;
+  flex-shrink: 0;
 }
 
 .tech-icon-wrapper:hover .tech-icon {
@@ -363,16 +365,46 @@ header {
 
 .carousel-wrapper {
   padding: 8px 0;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .carousel-container {
   overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-container::before,
+.carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, #020617 0%, transparent 100%);
+}
+
+.carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, #020617 0%, transparent 100%);
 }
 
 .carousel-track {
+  display: flex;
+  gap: 3rem;
   will-change: transform;
   backface-visibility: hidden;
   perspective: 1000px;
+  width: max-content;
 }
 
 .carousel-track-rtl {
@@ -392,13 +424,13 @@ header {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-33.333%, 0, 0);
   }
 }
 
 @keyframes scroll-ltr {
   0% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-33.333%, 0, 0);
   }
   100% {
     transform: translate3d(0, 0, 0);
@@ -813,6 +845,14 @@ body.light-mode .nav-logo {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+body.light-mode .carousel-container::before {
+    background: linear-gradient(to right, #f5f7fa 0%, transparent 100%);
+}
+
+body.light-mode .carousel-container::after {
+    background: linear-gradient(to left, #f5f7fa 0%, transparent 100%);
 }
 
 /*------------------------------------*\
