@@ -292,13 +292,6 @@ header {
   #TEXT STYLE ENHANCEMENTS
 \*------------------------------------*/
 .text-gradient-blue {
-  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-blue {
   background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -407,36 +400,6 @@ header {
   width: max-content;
 }
 
-.carousel-track-rtl {
-  animation: scroll-rtl 30s linear infinite;
-}
-
-.carousel-track-ltr {
-  animation: scroll-ltr 30s linear infinite;
-}
-
-.carousel-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll-rtl {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-33.333%, 0, 0);
-  }
-}
-
-@keyframes scroll-ltr {
-  0% {
-    transform: translate3d(-33.333%, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 /*------------------------------------*\
   #FOOTER ENHANCEMENT
 \*------------------------------------*/
@@ -445,6 +408,60 @@ footer {
   border-top: 1px solid #1E293B;
   padding: 3rem 0;
   text-align: center;
+}
+
+/*------------------------------------*\
+  #PROJECT FILTER BUTTONS
+\*------------------------------------*/
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #1E293B;
+  background: transparent;
+  color: #94A3B8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  border-color: #3B82F6;
+  color: #3B82F6;
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: #2563EB;
+  border-color: #2563EB;
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.project-card {
+  transition: all 0.3s ease;
+}
+
+.project-card.hidden {
+  display: none;
+}
+
+body.light-mode .filter-btn {
+  border-color: #CBD5E1;
+  color: #64748B;
+}
+
+body.light-mode .filter-btn:hover {
+  border-color: #3B82F6;
+  color: #3B82F6;
+}
+
+body.light-mode .filter-btn.active {
+  background: #2563EB;
+  border-color: #2563EB;
+  color: #FFFFFF;
 }
 
 /*------------------------------------*\
@@ -474,30 +491,11 @@ a:hover {
   text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
 }
 
-.text-claude-soft-blue {
-  color: #3B82F6;
-  text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
-}
-
 /* Subtle card border glow */
 .card {
   position: relative;
   overflow: hidden;
 }
-
-/* Simplified animation if needed
-@keyframes glowing-border {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-*/
 
 /* Subtle header glow */
 header {

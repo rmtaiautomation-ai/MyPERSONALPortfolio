@@ -111,9 +111,8 @@ initStatusRotator();
 // Typewriter Effect for Hero Section
 function initTypewriter() {
     const headline = document.getElementById('typewriter-headline');
-    const paragraph = document.getElementById('hero-paragraph');
     
-    if (!headline || !paragraph) return;
+    if (!headline) return;
     
     const phrases = [
         " Rommel",
@@ -217,7 +216,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Header scroll effect
-let lastScroll = 0;
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
@@ -228,8 +226,6 @@ window.addEventListener('scroll', () => {
     } else {
         header.style.boxShadow = 'none';
     }
-    
-    lastScroll = currentScroll;
 });
 
 // Intersection Observer for fade-in animations
@@ -636,3 +632,102 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Project Filter Functionality
+function filterProjects(category) {
+    const cards = document.querySelectorAll('.project-card');
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === category) {
+            btn.classList.add('active');
+        }
+    });
+    
+    cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+            card.style.display = '';
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+// Truly Infinite Carousel - JavaScript Based
+function initInfiniteCarousels() {
+    const tracks = document.querySelectorAll('.carousel-track');
+    
+    tracks.forEach(track => {
+        const direction = track.dataset.direction || 'rtl';
+        const speed = parseFloat(track.dataset.speed) || 1;
+        const items = Array.from(track.children);
+        
+        if (items.length === 0) return;
+        
+        // Clone items to fill the container
+        const containerWidth = track.parentElement.offsetWidth;
+        let totalWidth = 0;
+        
+        // Calculate total width of original items
+        items.forEach(item => {
+            totalWidth += item.offsetWidth + 48; // 48px = 3rem gap
+        });
+        
+        // Clone enough items to ensure seamless loop
+        const clonesNeeded = Math.ceil((containerWidth * 3) / totalWidth);
+        for (let i = 0; i < clonesNeeded; i++) {
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                track.appendChild(clone);
+            });
+        }
+        
+        // Animation variables
+        let position = 0;
+        let isPaused = false;
+        let animationId = null;
+        
+        // Get the width of one complete set
+        const setWidth = totalWidth;
+        
+        function animate() {
+            if (!isPaused) {
+                if (direction === 'rtl') {
+                    position -= speed;
+                    if (position <= -setWidth) {
+                        position += setWidth;
+                    }
+                } else {
+                    position += speed;
+                    if (position >= 0) {
+                        position -= setWidth;
+                    }
+                }
+                track.style.transform = `translate3d(${position}px, 0, 0)`;
+            }
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Initialize position for LTR
+        if (direction === 'ltr') {
+            position = -setWidth;
+        }
+        
+        // Start animation
+        animate();
+        
+        // Pause on hover
+        track.addEventListener('mouseenter', () => {
+            isPaused = true;
+        });
+        
+        track.addEventListener('mouseleave', () => {
+            isPaused = false;
+        });
+    });
+}
+
+// Initialize carousels when DOM is ready
+document.addEventListener('DOMContentLoaded', initInfiniteCarousels);
