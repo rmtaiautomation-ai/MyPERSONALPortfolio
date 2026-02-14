@@ -14,6 +14,9 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Calendly CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 
 <body class="background-clean">
@@ -557,96 +560,30 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+     <!-- Book A Call Section -->
     <section id="contact" class="py-20 relative">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-6xl font-futuristic font-bold text-center mb-16 gradient-text">
-                GET IN TOUCH
-            </h2>
-            <div class="max-w-5xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
-                    <div class="fade-in-up card p-8">
-                        <h3 class="text-2xl font-futuristic font-semibold mb-6 text-claude-blue">LET'S CONNECT</h3>
-                        <p class="text-claude-muted-tan mb-8 leading-relaxed">
-                            I'm always open to discussing new projects, creative ideas, or opportunities 
-                            to be part of your visions. Feel free to reach out!
-                        </p>
-                        <div class="space-y-6">
-                            <div class="flex items-center">
-                                <i class="fas fa-envelope text-2xl mr-4 text-claude-blue"></i>
-                                <a href="mailto:your.email@example.com" class="text-claude-muted-tan hover:text-claude-blue transition-colors">
-                                    rommeltima07@gmail.com
-                                </a>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-phone text-2xl mr-4 text-claude-blue"></i>
-                                <a href="tel:+1234567890" class="text-claude-muted-tan hover:text-claude-blue transition-colors">
-                                    +63 (977) 012-4038
-                                </a>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-map-marker-alt text-2xl mr-4 text-claude-blue"></i>
-                                <span class="text-claude-muted-tan">Taguig, Philippines</span>
-                            </div>
-                        </div>
-                        <!-- Social Media Links -->
-                        <div class="mt-10">
-                            <h4 class="text-xl font-futuristic font-semibold mb-6 text-white">FOLLOW ME</h4>
-                            <div class="flex space-x-6">
-                                <a href="https://www.linkedin.com/in/rommel-tima-1940561ab/" target="_blank" rel="noopener noreferrer" class="text-4xl text-claude-muted-tan hover:text-claude-blue transition-colors transform hover:scale-110 duration-300" title="LinkedIn">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://github.com/rmtaiautomation-ai" target="_blank" rel="noopener noreferrer" class="text-4xl text-claude-muted-tan hover:text-claude-blue transition-colors transform hover:scale-110 duration-300" title="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://www.instagram.com/lemr_om/" target="_blank" rel="noopener noreferrer" class="text-4xl text-claude-muted-tan hover:text-claude-blue transition-colors transform hover:scale-110 duration-300" title="Instagram">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
+            <div class="max-w-3xl mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-12 fade-in-up">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-alt text-4xl text-claude-blue mr-4"></i>
+                        <div class="text-left">
+                            <h2 class="text-3xl md:text-4xl font-futuristic font-bold gradient-text mb-1">
+                                Book a Call
+                            </h2>
+                            <p class="text-base text-claude-muted-tan">
+                                Schedule a free consultation
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Contact Form -->
-                    <div class="fade-in-up card p-8">
-                        <form id="contact-form" class="space-y-6">
-                            <div>
-                                <input type="text" 
-                                       id="name" 
-                                       name="name" 
-                                       placeholder="Your Name" 
-                                       required
-                                       class="w-full px-4 py-3 rounded-lg bg-[#2A221A] border border-[#3B82F6]/30 text-white placeholder-claude-muted-tan focus:outline-none focus:border-claude-blue focus:bg-[#0B1220]/80 transition-all">
-                            </div>
-                            <div>
-                                <input type="email" 
-                                       id="email" 
-                                       name="email" 
-                                       placeholder="Your Email" 
-                                       required
-                                       class="w-full px-4 py-3 rounded-lg bg-[#2A221A] border border-[#3B82F6]/30 text-white placeholder-claude-muted-tan focus:outline-none focus:border-claude-blue focus:bg-[#0B1220]/80 transition-all">
-                            </div>
-                            <div>
-                                <input type="text" 
-                                       id="subject" 
-                                       name="subject" 
-                                       placeholder="Subject" 
-                                       required
-                                       class="w-full px-4 py-3 rounded-lg bg-[#2A221A] border border-[#3B82F6]/30 text-white placeholder-claude-muted-tan focus:outline-none focus:border-claude-blue focus:bg-[#0B1220]/80 transition-all">
-                            </div>
-                            <div>
-                                <textarea id="message" 
-                                          name="message" 
-                                          rows="5" 
-                                          placeholder="Your Message" 
-                                          required
-                                          class="w-full px-4 py-3 rounded-lg bg-[#2A221A] border border-[#3B82F6]/30 text-white placeholder-claude-muted-tan focus:outline-none focus:border-claude-blue focus:bg-[#0B1220]/80 transition-all resize-none"></textarea>
-                            </div>
-                            <button type="submit" 
-                                    class="w-full btn">
-                                SEND MESSAGE
-                            </button>
-                        </form>
+                <!-- Calendly Embed -->
+                <div class="fade-in-up card p-4">
+                    <div class="calendly-inline-widget" 
+                         data-url="https://calendly.com/rommeltima07/new-meeting-2" 
+                         style="min-width:320px;height:700px;">
                     </div>
                 </div>
             </div>
@@ -655,11 +592,48 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-claude-darker-bg border-t border-border-color py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-claude-muted-tan mb-6">Everything here moves at a frequency. <br> Explore, learn, and tune your mind—
+    <footer class="bg-claude-darker-bg border-t border-border-color py-12">
+        <div class="container mx-auto px-6">
+            <!-- Contact Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <!-- Email -->
+                <a href="mailto:rommeltima07@gmail.com" class="footer-contact-btn">
+                    <i class="fas fa-envelope text-claude-blue text-xl"></i>
+                    <div>
+                        <span class="text-xs text-claude-muted-tan">Email</span>
+                        <span class="block text-sm text-white font-medium">rommeltima07@gmail.com</span>
+                    </div>
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/639770124038" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
+                    <i class="fab fa-whatsapp text-claude-blue text-xl"></i>
+                    <div>
+                        <span class="text-xs text-claude-muted-tan">WhatsApp</span>
+                        <span class="block text-sm text-white font-medium">+63 977 012 4038</span>
+                    </div>
+                </a>
+                
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/rommel-tima-1940561ab/" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
+                    <i class="fab fa-linkedin text-claude-blue text-xl"></i>
+                    <div>
+                        <span class="text-xs text-claude-muted-tan">LinkedIn</span>
+                        <span class="block text-sm text-white font-medium">Connect</span>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Location -->
+            <div class="flex items-center justify-center gap-2 mb-8 text-claude-muted-tan text-sm">
+                <i class="fas fa-map-marker-alt text-claude-blue"></i>
+                <span>Based in Taguig, Philippines • Available worldwide</span>
+            </div>
+            
+            <!-- Quote -->
+            <p class="text-claude-muted-tan mb-6 text-center">Everything here moves at a frequency. <br> Explore, learn, and tune your mind—
 where curiosity resonates, ideas spark energy,<br> and growth begins when you listen.</p>
-            <p class="text-claude-muted-tan mt-6">&copy; 2026 Rommel Tima. All rights reserved.</p>
+            <p class="text-claude-muted-tan mt-6 text-center">&copy; 2026 Rommel Tima. All rights reserved.</p>
         </div>
     </footer>
 
@@ -779,5 +753,8 @@ where curiosity resonates, ideas spark energy,<br> and growth begins when you li
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Calendly JS -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </body>
 </html>
