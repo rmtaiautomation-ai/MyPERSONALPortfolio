@@ -1108,3 +1108,16 @@ body.light-mode .carousel-container::after {
 body.light-mode .status-label {
     color: #64748B;
 }
+
+/* Light mode project stack badges */
+body.light-mode .stack__item {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #444;
+}
+
+body.light-mode .stack__item:hover {
+    background: rgba(0, 0, 0, 0.10);
+    border-color: rgba(0, 0, 0, 0.25);
+    color: #1a1a1a;
+}
