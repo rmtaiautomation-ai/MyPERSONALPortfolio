@@ -488,7 +488,140 @@ function openDocsModal(title, url) {
         // Reset to Docs tab when modal opens
         resetTabs();
         activateTab('docs');
+        
+        // Update modal body with project details if no iframe URL
+        if (!url || url === '#') {
+            updateModalContent(title);
+        }
     }
+}
+
+// Function to update modal content with project details
+function updateModalContent(projectTitle) {
+    const docsPanel = document.getElementById('docs');
+    if (!docsPanel) return;
+    
+    // Find the project data
+    const projectData = {
+        'Appointment Booking Calendar Sync': {
+            description: 'When someone books an appointment, the workflow creates a Google Calendar event, stores the record in Airtable, and sends email confirmations. It also handles reschedules and cancellations automatically.',
+            technologies: ['Google Calendar', 'Airtable', 'Gmail', 'Webhook', 'Make.com'],
+            features: [
+                'Automatic calendar event creation',
+                'Airtable record management',
+                'Email confirmations to clients',
+                'Reschedule handling',
+                'Cancellation automation'
+            ]
+        },
+        'Smart Lead Capture & CRM Automation System': {
+            description: 'This automation system captures booking inquiries from a website form, validates the information, checks for existing records, updates CRM entries, and sends confirmations and notifications automatically.',
+            technologies: ['Airtable', 'Google Sheets', 'Gmail', 'Slack', 'Webhook', 'Make.com'],
+            features: [
+                'Lead capture from website forms',
+                'Data validation and deduplication',
+                'Automatic CRM updates',
+                'Email confirmations',
+                'Slack team notifications'
+            ]
+        },
+        'Automated HR Sentiment & Safety Monitoring': {
+            description: 'This automation system monitors field reports submitted by site captains, uses AI to classify each entry by category, sentiment, and urgency, then automatically escalates HR issues via email and updates the CRM sheet — ensuring no critical safety or personnel concern goes unnoticed.',
+            technologies: ['Google Sheets', 'OpenAI', 'Gmail', 'JSON Parser', 'Make.com'],
+            features: [
+                'AI-powered sentiment analysis',
+                'Automatic issue classification',
+                'Urgency-based escalation',
+                'Email alerts for HR issues',
+                'CRM sheet updates'
+            ]
+        },
+        'AI-Powered Appointment Reminder System': {
+            description: 'This automation system reads upcoming appointments from a Google Sheet, triggers AI voice calls via VAPI to remind patients of their scheduled visits, classifies each call outcome using GPT-3.5, and automatically updates appointment statuses — handling confirmations, cancellations, rescheduling, no-answers, and voicemails in real time.',
+            technologies: ['n8n', 'VAPI', 'OpenAI', 'Googlesheet', 'webhook'],
+            features: [
+                'AI voice call reminders',
+                'Call outcome classification',
+                'Real-time status updates',
+                'Confirmation handling',
+                'Voicemail detection'
+            ]
+        },
+        'AI-Powered Customer Support Email Automation with Daily Digest': {
+            description: 'This automation system reads incoming customer support emails, uses AI to categorize and draft responses, routes tickets to the right team, sends automated replies, and compiles a daily digest summary delivered to your inbox and team channel.',
+            technologies: ['YouTube', 'Airtable', 'Google Sheets', 'n8n'],
+            features: [
+                'AI email categorization',
+                'Automated response drafting',
+                'Smart ticket routing',
+                'Auto-reply system',
+                'Daily digest compilation'
+            ]
+        },
+        'Full Lead Capture & CRM Pipeline (n8n)': {
+            description: 'Captures leads from a website form using a webhook, stores them in Airtable or a database, and sends an automated email reply. The workflow also triggers a Slack alert so the team can follow up immediately.',
+            technologies: ['n8n', 'Airtable', 'Webhook', 'Gmail', 'Slack'],
+            features: [
+                'Webhook-based lead capture',
+                'Airtable database storage',
+                'Automated email replies',
+                'Instant Slack alerts',
+                'Team follow-up triggers'
+            ]
+        },
+        'AI-Powered Dental Clinic Website': {
+            description: 'Modern responsive dental clinic website built with TailwindCSS and JavaScript, integrated with AI-powered booking automation and smart CRM workflows.',
+            technologies: ['HTML', 'TailwindCSS', 'JavaScript', 'AI Integration', 'Make.com', 'Airtable'],
+            features: [
+                'Responsive design',
+                'AI-powered booking',
+                'CRM integration',
+                'Modern UI/UX',
+                'Automation workflows'
+            ]
+        }
+    };
+    
+    const project = projectData[projectTitle];
+    if (!project) return;
+    
+    // Create detailed content
+    const contentHTML = `
+        <div class="p-6">
+            <h4 class="text-2xl font-bold mb-4 text-gray-800">${projectTitle}</h4>
+            <p class="text-gray-600 mb-6 leading-relaxed">${project.description}</p>
+            
+            <div class="mb-6">
+                <h5 class="text-lg font-semibold mb-3 text-gray-700">Key Features:</h5>
+                <ul class="space-y-2">
+                    ${project.features.map(feature => `
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                            <span class="text-gray-600">${feature}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h5 class="text-lg font-semibold mb-3 text-gray-700">Technologies Used:</h5>
+                <div class="flex flex-wrap gap-2">
+                    ${project.technologies.map(tech => `
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">${tech}</span>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <p class="text-sm text-gray-500">
+                    <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                    Documentation and demo videos will be added soon. Check back later!
+                </p>
+            </div>
+        </div>
+    `;
+    
+    docsPanel.innerHTML = contentHTML;
 }
 
 // Tab switching functionality
@@ -598,6 +731,13 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeAction();
         });
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeAction();
+            }
+        });
     }
 
     const closeLoomModal = document.getElementById('closeLoomModal');
@@ -632,6 +772,87 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Project Detail Modal Functionality
+function openProjectDetailModal(projectId) {
+    // Project data configuration
+    const projectData = {
+        'project-1': {
+            title: 'Appointment Booking Calendar Sync',
+            description: 'When someone books an appointment, the workflow creates a Google Calendar event, stores the record in Airtable, and sends email confirmations. It also handles reschedules and cancellations automatically.',
+            technologies: ['Google Calendar', 'Airtable', 'Gmail', 'Webhook', 'Make.com'],
+            documentationUrl: '#', // Add your Notion URL here
+            diagramUrl: '#', // Add your diagram image URL here
+            demoUrl: '#' // Add your Loom demo URL here
+        },
+        'project-2': {
+            title: 'Smart Lead Capture & CRM Automation System',
+            description: 'This automation system captures booking inquiries from a website form, validates the information, checks for existing records, updates CRM entries, and sends confirmations and notifications automatically.',
+            technologies: ['Airtable', 'Google Sheets', 'Gmail', 'Slack', 'Webhook', 'Make.com'],
+            documentationUrl: '#',
+            diagramUrl: '#',
+            demoUrl: '#'
+        },
+        'project-3': {
+            title: 'Automated HR Sentiment & Safety Monitoring',
+            description: 'This automation system monitors field reports submitted by site captains, uses AI to classify each entry by category, sentiment, and urgency, then automatically escalates HR issues via email and updates the CRM sheet — ensuring no critical safety or personnel concern goes unnoticed.',
+            technologies: ['Google Sheets', 'OpenAI', 'Gmail', 'JSON Parser', 'Make.com'],
+            documentationUrl: '#',
+            diagramUrl: '#',
+            demoUrl: '#'
+        },
+        'project-4': {
+            title: 'AI-Powered Appointment Reminder System',
+            description: 'This automation system reads upcoming appointments from a Google Sheet, triggers AI voice calls via VAPI to remind patients of their scheduled visits, classifies each call outcome using GPT-3.5, and automatically updates appointment statuses — handling confirmations, cancellations, rescheduling, no-answers, and voicemails in real time.',
+            technologies: ['n8n', 'VAPI', 'OpenAI', 'Googlesheet', 'webhook'],
+            documentationUrl: '#',
+            diagramUrl: '#',
+            demoUrl: '#'
+        },
+        'project-5': {
+            title: 'AI-Powered Customer Support Email Automation with Daily Digest',
+            description: 'This automation system reads incoming customer support emails, uses AI to categorize and draft responses, routes tickets to the right team, sends automated replies, and compiles a daily digest summary delivered to your inbox and team channel.',
+            technologies: ['YouTube', 'Airtable', 'Google Sheets', 'n8n'],
+            documentationUrl: '#',
+            diagramUrl: '#',
+            demoUrl: '#'
+        },
+        'project-6': {
+            title: 'Full Lead Capture & CRM Pipeline (n8n)',
+            description: 'Captures leads from a website form using a webhook, stores them in Airtable or a database, and sends an automated email reply. The workflow also triggers a Slack alert so the team can follow up immediately.',
+            technologies: ['n8n', 'Airtable', 'Webhook', 'Gmail', 'Slack'],
+            documentationUrl: '#',
+            diagramUrl: '#',
+            demoUrl: '#'
+        },
+        'project-7': {
+            title: 'AI-Powered Dental Clinic Website',
+            description: 'Modern responsive dental clinic website built with TailwindCSS and JavaScript, integrated with AI-powered booking automation and smart CRM workflows.',
+            technologies: ['HTML', 'TailwindCSS', 'JavaScript', 'AI Integration', 'Make.com', 'Airtable'],
+            documentationUrl: '#',
+            diagramUrl: '#',
+            demoUrl: '#'
+        }
+    };
+
+    const project = projectData[projectId];
+    if (!project) {
+        console.error('Project not found:', projectId);
+        return;
+    }
+
+    // Open the docs modal with project information
+    openDocsModal(project.title, project.documentationUrl);
+    
+    // Update modal content with project details
+    const modalTitle = document.getElementById('modalTitle');
+    if (modalTitle) {
+        modalTitle.textContent = project.title;
+    }
+
+    // You can customize this further to show more details in the modal
+    console.log('Opening project details for:', project.title);
+}
 
 // Project Filter Functionality
 function filterProjects(category) {

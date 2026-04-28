@@ -1001,6 +1001,58 @@ body.light-mode .carousel-container::after {
     background: #fff;
 }
 
+/* Project details content styling */
+#docs .p-6 h4 {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#docs .p-6 p {
+    color: #4a5568;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+}
+
+#docs .p-6 h5 {
+    color: #2d3748;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+#docs .p-6 .flex.items-start gap-2 {
+    margin-bottom: 0.5rem;
+}
+
+#docs .p-6 .fa-check-circle {
+    color: #3B82F6;
+    margin-top: 0.25rem;
+}
+
+#docs .p-6 span.text-gray-600 {
+    color: #4a5568;
+}
+
+#docs .p-6 .bg-blue-100 {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+#docs .p-6 .bg-gray-50 {
+    background-color: #f9fafb;
+    border-color: #e5e7eb;
+}
+
+#docs .p-6 .text-gray-500 {
+    color: #6b7280;
+}
+
+#docs .p-6 .fa-info-circle {
+    color: #3B82F6;
+}
+
 /* Modal entrance animation */
 @keyframes docsModalFadeIn {
     from {
