@@ -476,23 +476,15 @@ if (contactForm) {
 // Function to open documentation modal
 function openDocsModal(title, url) {
     const modal = document.getElementById('docsModal');
-    const frame = document.getElementById('notionFrame');
     const modalTitle = document.getElementById('modalTitle');
     
-    if (modal && frame && modalTitle) {
-        modalTitle.textContent = title + ' Documentation';
-        frame.src = url;
+    if (modal && modalTitle) {
+        modalTitle.textContent = title;
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
         
-        // Reset to Docs tab when modal opens
-        resetTabs();
-        activateTab('docs');
-        
-        // Update modal body with project details if no iframe URL
-        if (!url || url === '#') {
-            updateModalContent(title);
-        }
+        // Update modal body with project details
+        updateModalContent(title);
     }
 }
 
@@ -583,7 +575,10 @@ function updateModalContent(projectTitle) {
     };
     
     const project = projectData[projectTitle];
-    if (!project) return;
+    if (!project) {
+        docsPanel.innerHTML = '<p class="p-6 text-gray-600">Project details not found.</p>';
+        return;
+    }
     
     // Create detailed content
     const contentHTML = `
@@ -718,12 +713,14 @@ function openLoomModal(title, loomUrl) {
 document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('closeModal');
     const modal = document.getElementById('docsModal');
-    const frame = document.getElementById('notionFrame');
+    const docsPanel = document.getElementById('docs');
 
-    if (closeModal && modal && frame) {
+    if (closeModal && modal) {
         const closeAction = () => {
             modal.classList.add('hidden');
-            frame.src = '';
+            if (docsPanel) {
+                docsPanel.innerHTML = ''; // Clear content
+            }
             document.body.style.overflow = 'auto';
         };
 
